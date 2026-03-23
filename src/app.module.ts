@@ -5,15 +5,19 @@ import { EnrollmentModule } from "@enrollment/enrollment.module";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SharedModule } from "@shared/shared.module";
+import { UsersModule } from "@users/users.module";
+import { AuthModule } from "@auth/auth.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    SharedModule,
+    UsersModule,
+    AuthModule,
     AcademicModule,
     ClassOfferingModule,
     EnrollmentModule,
     AttendanceModule,
-    SharedModule,
   ],
 })
 export class AppModule {}

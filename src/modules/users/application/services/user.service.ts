@@ -1,4 +1,21 @@
+import { CreateUserDto } from "@users/application/dto/user.dto";
+import { User } from "@users/domain/models/user.entity";
+import {
+  USER_REPOSITORY,
+  type UserRepository,
+} from "@users/domain/repositories/user-repository.interface";
+import {
+  ConflictException,
+  Inject,
+  Injectable,
+} from "@nestjs/common";
 import bcrypt from "bcryptjs";
+
+export interface UserPayload {
+  id: string;
+  email: string;
+  permissions: string[];
+}
 
 @Injectable()
 export class UserService {
