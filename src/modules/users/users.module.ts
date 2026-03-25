@@ -3,9 +3,11 @@ import { USER_REPOSITORY } from "@users/domain/repositories/user-repository.inte
 import { DrizzleUserRepository } from "@users/infra/repositories/drizzle-user.repository";
 import { Module } from "@nestjs/common";
 import { SharedModule } from "@shared/shared.module";
+import { UsersController } from "./infra/controllers/users.controller";
 
 @Module({
   imports: [SharedModule],
+  controllers: [UsersController],
   providers: [
     UserService,
     DrizzleUserRepository,
