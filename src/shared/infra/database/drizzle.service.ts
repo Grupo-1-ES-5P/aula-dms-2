@@ -1,6 +1,6 @@
-import { studentsSchema } from "@academic/students/infra/schemas/student.schema";
-import { subjectsSchema } from "@academic/subjects/infra/schemas/subject.schema";
-import { teachersSchema } from "@academic/teachers/infra/schemas/teacher.schema";
+import { studentsSchema } from "@shared/infra/schemas/student.schema";
+import { subjectsSchema } from "@shared/infra/schemas/subject.schema";
+import { teachersSchema } from "@shared/infra/schemas/teacher.schema";
 import {
   attendanceStatusEnum,
   attendancesSchema,
@@ -8,11 +8,11 @@ import {
 import {
   classOfferingStatusEnum,
   classOfferingsSchema,
-} from "@class-offering/infra/schemas/class-offering.schema";
+} from "@shared/infra/schemas/class-offering.schema";
 import {
   enrollmentStatusEnum,
   enrollmentsSchema,
-} from "@enrollment/infra/schemas/enrollment.schema";
+} from "@shared/infra/schemas/enrollment.schema";
 import { Injectable, type OnModuleDestroy } from "@nestjs/common";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";

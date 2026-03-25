@@ -1,4 +1,4 @@
-import { teachersSchema } from "@academic/teachers/infra/schemas/teacher.schema";
+import { teachersSchema } from "@shared/infra/schemas/teacher.schema";
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const usersSchema = pgTable("users", {
