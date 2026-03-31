@@ -1,9 +1,10 @@
+import { CreateAttendanceDto } from "@attendance/application/dto/create-attendance.dto";
 import { AttendanceService } from "@attendance/application/services/attendance.service";
+import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+// import { Permission } from "@shared/enums/permission.enum";
+// import { RequirePermissions } from "@shared/infra/decorators/permissions.decorator";
 import { RegisterAttendanceDto } from "@attendance/application/dto/register-attendance.dto";
 import { AttendanceStatus } from "@attendance/domain/models/attendance.entity";
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
-import { Permission } from "@shared/enums/permission.enum";
-import { RequirePermissions } from "@shared/infra/decorators/permissions.decorator";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ApiOperation, ApiQuery, ApiNotFoundResponse, ApiNoContentResponse } from "@nestjs/swagger";
 
