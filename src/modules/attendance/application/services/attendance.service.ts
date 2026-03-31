@@ -1,8 +1,6 @@
 import { AttendanceDto } from "@attendance/application/dto/attendance.dto";
-import {
-  Attendance,
-  AttendanceStatus,
-} from "@attendance/domain/models/attendance.entity";
+import { CreateAttendanceDto } from "@attendance/application/dto/create-attendance.dto";
+import { Attendance } from "@attendance/domain/models/attendance.entity";
 import {
   ATTENDANCE_REPOSITORY,
   type AttendanceRepository,
@@ -16,12 +14,7 @@ export class AttendanceService {
     private readonly attendanceRepository: AttendanceRepository,
   ) {}
 
-  async register(dto: {
-    studentId: string;
-    lessonId: string;
-    classOfferingId: string;
-    status: AttendanceStatus;
-  }): Promise<void> {
+  async register(dto: CreateAttendanceDto): Promise<void> {
     const attendance = Attendance.restore(dto);
     await this.attendanceRepository.create(attendance!);
   }

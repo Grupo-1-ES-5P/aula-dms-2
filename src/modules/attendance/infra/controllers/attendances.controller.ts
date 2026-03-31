@@ -1,8 +1,6 @@
+import { CreateAttendanceDto } from "@attendance/application/dto/create-attendance.dto";
 import { AttendanceService } from "@attendance/application/services/attendance.service";
-import { AttendanceStatus } from "@attendance/domain/models/attendance.entity";
 import { Body, Controller, Get, Param, Post } from "@nestjs/common";
-import { Permission } from "@shared/enums/permission.enum";
-import { RequirePermissions } from "@shared/infra/decorators/permissions.decorator";
 
 @Controller("attendances")
 export class AttendancesController {
@@ -28,14 +26,7 @@ export class AttendancesController {
 
   @Post()
   //@RequirePermissions(Permission.ATTENDANCES_WRITE)
-  async register(
-    @Body() body: {
-      studentId: string;
-      lessonId: string;
-      classOfferingId: string;
-      status: AttendanceStatus;
-    },
-  ) {
+  async register(@Body() body: CreateAttendanceDto) {
     return this.attendanceService.register(body);
   }
 }
