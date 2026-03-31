@@ -39,7 +39,7 @@ export class AttendancesController {
   @Post()
   @ApiOperation({summary: "Registrar chamada/presença"})
   //@RequirePermissions(Permission.ATTENDANCES_WRITE)
-  async register(@Body() body: RegisterAttendanceDto) {
+  async register(@Body() body: CreateAttendanceDto) {
     return this.attendanceService.register(body);
   }
 }
