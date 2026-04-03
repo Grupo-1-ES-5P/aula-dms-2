@@ -1,6 +1,6 @@
 import { CreateAttendanceDto } from "@attendance/application/dto/create-attendance.dto";
 import { AttendanceService } from "@attendance/application/services/attendance.service";
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query, Param } from "@nestjs/common";
 // import { Permission } from "@shared/enums/permission.enum";
 // import { RequirePermissions } from "@shared/infra/decorators/permissions.decorator";
 import { RegisterAttendanceDto } from "@attendance/application/dto/register-attendance.dto";
