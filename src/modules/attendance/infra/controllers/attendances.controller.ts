@@ -7,6 +7,8 @@ import { RegisterAttendanceDto } from "@attendance/application/dto/register-atte
 import { AttendanceStatus } from "@attendance/domain/models/attendance.entity";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ApiOperation, ApiQuery, ApiNotFoundResponse, ApiNoContentResponse } from "@nestjs/swagger";
+import { HateoasItem, HateoasList } from "@shared/infra/hateoas";
+import { AttendanceDto } from "@attendance/application/dto/attendance.dto";
 
 @ApiTags("attendances")
 @ApiBearerAuth()
@@ -19,6 +21,13 @@ export class AttendancesController {
   @ApiQuery({ name: "student_id", required: false, type: String })
   @Get("student/:studentId/class-offering/:classOfferingId")
   //@RequirePermissions(Permission.ATTENDANCES_READ)
+  @HateoasList<AttendanceDto>({
+    basePath: "/attendances",
+    itemLinks: (item) => ({
+      self: { href: `/student/${item.studentId}/class-offering/${item.classOfferingId}`, method: "GET" },
+      create: { href: "/attendances", method: "POST" },
+    }),
+  })
   async findByStudent(
     @Param("studentId") studentId: string,
     @Param("classOfferingId") classOfferingId: string,
@@ -31,6 +40,13 @@ export class AttendancesController {
 
   
   @Get("class-offering/:classOfferingId")
+  @HateoasList<AttendanceDto>({
+    basePath: "/attendances",
+    itemLinks: (item) => ({
+      self: { href: `/class-offering/${item.classOfferingId}`, method: "GET" },
+      create: { href: "/attendances", method: "POST" },
+    }),
+  })
   //@RequirePermissions(Permission.ATTENDANCES_READ)
   async findByClassOffering(@Param("classOfferingId") classOfferingId: string) {
     return this.attendanceService.findByClassOffering(classOfferingId);
