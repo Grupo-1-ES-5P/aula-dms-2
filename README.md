@@ -25,12 +25,14 @@ Crie um arquivo `.env` na raiz do projeto com base no exemplo abaixo:
 ```env
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/school_control
 PORT=3001
+RABBITMQ_URL=amqp://guest:guest@localhost:5672
 ```
 
 | Variável | Descrição |
 |---|---|
 | `DATABASE_URL` | Connection string do PostgreSQL |
 | `PORT` | Porta em que a API vai subir |
+| `RABBITMQ_URL` | Connection string do RabbitMQ |
 
 ### 3. Criar e migrar o banco de dados
 
@@ -90,6 +92,20 @@ docker run --name school-db \
   -p 5432:5432 \
   -d postgres:16
 ```
+
+## Subindo o RabbitMQ com Docker Compose
+
+Para facilitar os testes de mensageria no módulo `attendance`, suba o RabbitMQ com:
+
+```bash
+docker compose up -d rabbitmq
+```
+
+Painel web do RabbitMQ:
+
+- URL: `http://localhost:15672`
+- Usuário: `guest`
+- Senha: `guest`
 
 ---
 
