@@ -6,17 +6,26 @@ import {
   type AttendanceRepository,
 } from "@attendance/domain/repositories/attendance-repository.interface";
 import { Inject, Injectable } from "@nestjs/common";
+import { AttendancePublisherService } from "@shared/infra/messaging";
 
 @Injectable()
 export class AttendanceService {
   constructor(
     @Inject(ATTENDANCE_REPOSITORY)
     private readonly attendanceRepository: AttendanceRepository,
+    private readonly attendancePublisherService: AttendancePublisherService,
   ) {}
 
   async register(dto: CreateAttendanceDto): Promise<void> {
     const attendance = Attendance.restore(dto);
     await this.attendanceRepository.create(attendance!);
+
+    await this.attendancePublisherService.publishAttendanceRegistered({
+      attendanceId: attendance?.id || 'unknown',
+      studentId: dto.studentId,
+      classOfferingId: dto.classOfferingId,
+      timestamp: new Date(),
+    });
   }
 
   async findByStudentAndClassOffering(
