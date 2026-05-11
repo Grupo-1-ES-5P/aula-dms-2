@@ -17,4 +17,12 @@ export {
   ClassOfferingConsumerService,
   type ClassOfferingEvent,
 } from "./class-offering-consumer.service";
+export {
+  ENROLLMENT_CREATED_EXCHANGE,
+  ENROLLMENT_CREATED_QUEUE,
+  ENROLLMENT_CREATED_ROUTING_KEY,
+  ENROLLMENT_CANCELED_EXCHANGE,
+  ENROLLMENT_CANCELED_QUEUE,
+  ENROLLMENT_CANCELED_ROUTING_KEY,
+} from "@shared/infra/messaging/enrollment-consumer.service";
 export { RabbitMQService } from "./rabbitmq.service";
